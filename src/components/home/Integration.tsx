@@ -10,10 +10,10 @@ const integrationCategories = [
     name: "AI Models",
     items: [
       { name: "OpenAI", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png" },
-      { name: "Anthropic", logo: "https://framerusercontent.com/images/nXLK5EqKJBT9IJfEpM2j7B0GYI.png" },
-      { name: "Gemini", logo: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_1.max-1000x1000.png" },
-      { name: "Meta", logo: "https://about.fb.com/wp-content/uploads/2021/10/Meta-Logo.png?fit=1200%2C613" },
-      { name: "Mistral", logo: "https://avatars.githubusercontent.com/u/128122921?s=200&v=4" },
+      { name: "Anthropic Claude", logo: "https://framerusercontent.com/images/nXLK5EqKJBT9IJfEpM2j7B0GYI.png" },
+      { name: "Google Gemini", logo: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_1.max-1000x1000.png" },
+      { name: "Meta Llama", logo: "https://about.fb.com/wp-content/uploads/2021/10/Meta-Logo.png?fit=1200%2C613" },
+      { name: "Mistral AI", logo: "https://avatars.githubusercontent.com/u/128122921?s=200&v=4" },
     ]
   },
   {
@@ -25,7 +25,7 @@ const integrationCategories = [
       { name: "Dropbox", logo: "https://aem.dropbox.com/cms/content/dam/dropbox/www/en-us/branding/app-dropbox.png" },
       { name: "ARXIV", logo: "https://static.arxiv.org/static/base/0.19.4/images/arxiv-logo-web.svg" },
       { name: "Wikipedia", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png" },
-      { name: "Google", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" },
+      { name: "Google Search", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" },
     ]
   },
   {
