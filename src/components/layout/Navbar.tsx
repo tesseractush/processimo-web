@@ -25,11 +25,9 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
     { name: "Features", path: "/features" },
     { name: "Testimonials", path: "/testimonials" },
     { name: "Pricing", path: "/pricing" },
-    { name: "FAQ", path: "/faq" },
     { name: "Resources", path: "/resources" }
   ];
 
@@ -42,13 +40,13 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold tracking-tight animate-pulse-subtle">
+          <span className="text-xl font-bold tracking-tight">
             Processimo
           </span>
         </Link>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <Link
               key={link.path}
@@ -66,12 +64,6 @@ const Navbar = () => {
         </div>
         
         <div className="hidden md:flex items-center space-x-4">
-          <Link 
-            to="/signin" 
-            className="text-sm font-medium hover:text-primary transition-colors"
-          >
-            Sign In
-          </Link>
           <Link 
             to="https://app.processimo.com" 
             className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
@@ -108,16 +100,10 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <div className="pt-4 flex flex-col space-y-4">
-              <Link 
-                to="/signin" 
-                className="text-base font-medium hover:text-primary transition-colors"
-              >
-                Sign In
-              </Link>
+            <div className="pt-4">
               <Link 
                 to="https://app.processimo.com" 
-                className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-base font-medium text-center hover:bg-primary/90 transition-colors"
+                className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-base font-medium text-center hover:bg-primary/90 transition-colors inline-block w-full"
               >
                 Get Started
               </Link>
