@@ -3,6 +3,7 @@ import { Quote } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
 
 const testimonials = [
   {
@@ -53,6 +54,22 @@ const testimonials = [
     company: "FinancePro Advisors",
     industry: "Finance"
   },
+  {
+    quote: "The collaboration features between AI agents have streamlined our entire product development cycle. We've reduced time-to-market by over 30%.",
+    author: "Amanda Chen",
+    title: "Product Manager, InnovateX",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    company: "InnovateX",
+    industry: "Product Development"
+  },
+  {
+    quote: "Processimo's AI agents have transformed how we handle compliance and documentation. What used to take days now happens in minutes with perfect accuracy.",
+    author: "Daniel Miller",
+    title: "Compliance Officer, LegalEdge",
+    avatar: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    company: "LegalEdge",
+    industry: "Legal"
+  },
 ];
 
 const industryFilters = [
@@ -62,13 +79,15 @@ const industryFilters = [
   "Customer Service", 
   "Data Analytics", 
   "Marketing", 
-  "Finance"
+  "Finance",
+  "Product Development",
+  "Legal"
 ];
 
 const TestimonialsPage = () => {
   return (
     <Layout>
-      <section className="py-24 px-4 md:px-6">
+      <section className="py-24 px-4 md:px-6 bg-secondary/30">
         <div className="container mx-auto">
           <SectionHeading
             badge="Success Stories"
@@ -76,7 +95,7 @@ const TestimonialsPage = () => {
             subtitle="Industry leaders share how Processimo's AI agents have transformed their businesses and accelerated their growth."
           />
           
-          <div className="max-w-5xl mx-auto mt-16">
+          <div className="max-w-7xl mx-auto mt-16">
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {industryFilters.map((filter, index) => (
                 <button
@@ -93,19 +112,24 @@ const TestimonialsPage = () => {
               ))}
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {testimonials.map((testimonial, index) => (
-                <div 
+                <Card 
                   key={index}
-                  className="bg-background border border-border rounded-xl p-6 hover:shadow-soft transition-all duration-300 relative animate-fade-in"
+                  className="card-hover border-border/30 bg-card/50 animate-fade-in"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="absolute -top-4 -left-4 w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
-                    <Quote className="w-5 h-5 text-primary" />
-                  </div>
-                  
-                  <div className="pt-4">
-                    <blockquote className="text-lg font-medium mb-6 text-balance">
+                  <CardContent className="p-6 pt-6">
+                    <div className="mb-4 flex justify-between items-start">
+                      <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+                        <Quote className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-xs bg-secondary/80 px-2 py-1 rounded-full">
+                        {testimonial.industry}
+                      </span>
+                    </div>
+                    
+                    <blockquote className="text-base font-medium mb-6 line-clamp-4 text-balance">
                       "{testimonial.quote}"
                     </blockquote>
                     
@@ -118,19 +142,11 @@ const TestimonialsPage = () => {
                       <div>
                         <div className="font-semibold">{testimonial.author}</div>
                         <div className="text-sm text-muted-foreground">{testimonial.title}</div>
+                        <div className="text-xs text-muted-foreground mt-1">{testimonial.company}</div>
                       </div>
                     </div>
-                    
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">{testimonial.company}</span>
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-full">
-                          {testimonial.industry}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>

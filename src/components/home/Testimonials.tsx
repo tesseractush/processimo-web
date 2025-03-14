@@ -3,6 +3,14 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import SectionHeading from "../ui/section-heading";
 import { cn } from "@/lib/utils";
+import { Card, CardContent } from "../ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 const testimonials = [
   {
@@ -29,9 +37,22 @@ const testimonials = [
     title: "Head of Analytics, DataDriven",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
   },
+  {
+    quote: "Our marketing team has seen incredible results using Processimo. We can now create, analyze, and optimize campaigns with unprecedented speed.",
+    author: "Jennifer Lee",
+    title: "Marketing Director, BrandForward",
+    avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+  },
+  {
+    quote: "As a financial advisor, time is crucial. Processimo's AI agents have automated our report generation and analysis, saving us hundreds of hours per month.",
+    author: "Robert Williams",
+    title: "Principal, FinancePro Advisors",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80"
+  },
 ];
 
 const Testimonials = () => {
+  // For mobile slider
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handlePrev = () => {
@@ -43,7 +64,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-24 px-4 md:px-6">
+    <section className="py-24 px-4 md:px-6 bg-secondary/30">
       <div className="container mx-auto">
         <SectionHeading
           badge="Testimonials"
@@ -51,70 +72,70 @@ const Testimonials = () => {
           subtitle="Hear from industry leaders who have transformed their businesses with Processimo."
         />
 
-        <div className="max-w-4xl mx-auto mt-12 relative">
-          <div className="absolute -top-6 -left-6 w-12 h-12 rounded-lg bg-secondary flex items-center justify-center animate-float">
-            <Quote className="w-6 h-6 text-primary" />
-          </div>
-
-          <div className="relative overflow-hidden bg-background border border-border rounded-2xl p-8 md:p-12 shadow-soft">
-            <div className="transition-all duration-500 ease-in-out">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    "transition-opacity duration-500 absolute top-0 left-0 right-0 p-8 md:p-12",
-                    index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                  )}
-                >
-                  <blockquote className="text-xl md:text-2xl font-medium mb-8 text-balance">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div className="flex items-center space-x-4">
-                    <img
-                      src={testimonial.avatar}
-                      alt={testimonial.author}
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <div className="font-semibold">{testimonial.author}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.title}</div>
-                    </div>
+        {/* Desktop Cards Grid - Hidden on mobile */}
+        <div className="mt-12 hidden md:grid grid-cols-3 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index} className="card-hover border-border/30 bg-card/50">
+              <CardContent className="p-6 pt-6">
+                <div className="mb-4 flex justify-between items-start">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+                    <Quote className="w-5 h-5 text-primary" />
                   </div>
                 </div>
+                <blockquote className="text-base font-medium mb-6 min-h-[100px] text-balance">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="flex items-center space-x-4">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="font-semibold">{testimonial.author}</div>
+                    <div className="text-sm text-muted-foreground">{testimonial.title}</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Mobile Carousel - Only visible on mobile */}
+        <div className="mt-12 md:hidden">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index}>
+                  <Card className="border-border/30 bg-card/50">
+                    <CardContent className="p-6 pt-6">
+                      <div className="mb-4 flex justify-between items-start">
+                        <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+                          <Quote className="w-5 h-5 text-primary" />
+                        </div>
+                      </div>
+                      <blockquote className="text-base font-medium mb-6 text-balance">
+                        "{testimonial.quote}"
+                      </blockquote>
+                      <div className="flex items-center space-x-4">
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.author}
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                        <div>
+                          <div className="font-semibold">{testimonial.author}</div>
+                          <div className="text-sm text-muted-foreground">{testimonial.title}</div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
               ))}
-            </div>
-
-            <div className="absolute bottom-8 right-8 flex space-x-2">
-              <button
-                onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-secondary/80 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-6 flex justify-center space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={cn(
-                  "w-3 h-3 rounded-full transition-all",
-                  index === activeIndex ? "bg-primary scale-100" : "bg-secondary scale-75 hover:scale-90"
-                )}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
         </div>
       </div>
     </section>
