@@ -9,7 +9,7 @@ import CTA from "@/components/home/CTA";
 
 const Index = () => {
   return (
-    <Layout>
+    <Layout isHomePage={true}>
       <Hero />
       <Features />
       <Timeline />

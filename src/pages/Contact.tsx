@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -42,7 +43,15 @@ const ContactPage = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await submitContactForm(data);
+      // Make sure we're passing the required fields for ContactFormData
+      const response = await submitContactForm({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        subject: data.subject,
+        company: data.company || undefined,
+        phone: data.phone || undefined
+      });
       toast({
         title: "Message sent!",
         description: response.message || "Thank you for reaching out. We'll get back to you soon.",
