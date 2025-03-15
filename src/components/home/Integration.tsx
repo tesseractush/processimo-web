@@ -26,6 +26,12 @@ const integrationCategories = [
       { name: "ARXIV", logo: "https://static.arxiv.org/static/base/0.19.4/images/arxiv-logo-web.svg" },
       { name: "Wikipedia", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png" },
       { name: "Google Search", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" },
+      { name: "ERPNext", logo: "https://erpnext.com/files/erpnext-logo.png" },
+      { name: "SuiteCRM", logo: "https://suitecrm.com/wp-content/uploads/2017/12/SuiteCRM-Logo.svg" },
+      { name: "Slack", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png" },
+      { name: "LinkedIn", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/800px-LinkedIn_logo_initials.png" },
+      { name: "Asana", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Asana_logo.svg/1200px-Asana_logo.svg.png" },
+      { name: "Jira", logo: "https://wac-cdn.atlassian.com/dam/jcr:e348b562-4152-4cdc-8a55-3d297e509cc8/Jira%20Software-blue.svg" },
     ]
   },
   {
@@ -56,7 +62,14 @@ const Integration = () => {
           subtitle="Processimo seamlessly integrates with the best AI models, popular services, and supports various file formats to enhance your workflow."
         />
 
-        <div className="max-w-4xl mx-auto mt-12">
+        {/* Image placeholder */}
+        <div className="max-w-4xl mx-auto mt-8 mb-12 rounded-lg overflow-hidden border border-border shadow-md">
+          <div className="aspect-[16/9] w-full bg-secondary/70 flex items-center justify-center">
+            <p className="text-muted-foreground">Integration Showcase Image</p>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             {integrationCategories.map((category) => (
               <button
