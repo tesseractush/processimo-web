@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { sendContactForm } from "@/api/contact";
 
+// Define the form schema with Zod
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -22,6 +23,7 @@ const formSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
+// Ensure this type matches the ContactFormData interface in the API
 type ContactFormValues = z.infer<typeof formSchema>;
 
 const ContactPage = () => {
@@ -43,6 +45,7 @@ const ContactPage = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
+      // Pass the data directly - now it will match the ContactFormData interface
       await sendContactForm(data);
       toast({
         title: "Message sent!",
