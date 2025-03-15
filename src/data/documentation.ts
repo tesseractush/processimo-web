@@ -1,4 +1,3 @@
-
 import { BlogSection } from "./blog-posts";
 
 export interface Documentation {
@@ -22,7 +21,7 @@ export const documentation: Documentation[] = [
     content: [
       {
         type: 'paragraph',
-        content: 'Welcome to Processimo! This comprehensive guide will walk you through the essential steps to get started with our platform, from account setup to creating your first AI agent and building your first workflow. By the end of this guide, you'll have a functional AI agent ready to tackle your business tasks.'
+        content: "Welcome to Processimo! This comprehensive guide will walk you through the essential steps to get started with our platform, from account setup to creating your first AI agent and building your first workflow. By the end of this guide, you'll have a functional AI agent ready to tackle your business tasks."
       },
       {
         type: 'heading',
@@ -51,7 +50,7 @@ export const documentation: Documentation[] = [
       },
       {
         type: 'paragraph',
-        content: 'After registration, you\'ll need to select a subscription plan that best fits your needs. Processimo offers several options:'
+        content: "After registration, you'll need to select a subscription plan that best fits your needs. Processimo offers several options:"
       },
       {
         type: 'list',
@@ -398,7 +397,7 @@ export const documentation: Documentation[] = [
     content: [
       {
         type: 'paragraph',
-        content: 'AI agents are the foundation of the Processimo platform, serving as specialized digital workers trained to handle specific business tasks and domains. This guide provides a comprehensive walkthrough of creating effective AI agents, from initial setup to advanced specialization techniques.'
+        content: "AI agents are the foundation of the Processimo platform, serving as specialized digital workers trained to handle specific business tasks and domains. This guide provides a comprehensive walkthrough of creating effective AI agents, from initial setup to advanced specialization techniques."
       },
       {
         type: 'heading',
@@ -406,7 +405,7 @@ export const documentation: Documentation[] = [
       },
       {
         type: 'paragraph',
-        content: 'Before creating an agent, it\'s important to understand what they can do and how they fit into your business processes. Processimo AI agents can:'
+        content: "Before creating an agent, it's important to understand what they can do and how they fit into your business processes. Processimo AI agents can:"
       },
       {
         type: 'list',
