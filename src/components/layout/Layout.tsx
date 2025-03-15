@@ -4,15 +4,12 @@ import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ChatAssistant from "../chat/ChatAssistant";
-import { HomeBackground } from "../ui/background/HomeBackground";
-import { PageBackground } from "../ui/background/PageBackground";
 
 interface LayoutProps {
   children: ReactNode;
-  isHomePage?: boolean;
 }
 
-const Layout = ({ children, isHomePage = false }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   const { pathname } = useLocation();
   
   useEffect(() => {
@@ -20,10 +17,9 @@ const Layout = ({ children, isHomePage = false }: LayoutProps) => {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col relative">
-      {isHomePage ? <HomeBackground /> : <PageBackground />}
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-20 relative z-0">
+      <main className="flex-1 pt-20">
         {children}
       </main>
       <Footer />
