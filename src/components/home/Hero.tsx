@@ -1,8 +1,54 @@
 
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Zap, Laptop, Users } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const phrases = [
+    "Market Research",
+    "Customer Support",
+    "Auditing",
+    "Marketing Campaign",
+    "Content Creation",
+    "Software Testing",
+    "SEO Optimization"
+  ];
+  
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+  
+  useEffect(() => {
+    const currentPhrase = phrases[currentPhraseIndex];
+    
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing forward
+        setDisplayText(currentPhrase.substring(0, displayText.length + 1));
+        setTypingSpeed(150); // typing speed
+        
+        // If we've fully typed the word, start deleting after a pause
+        if (displayText === currentPhrase) {
+          setTypingSpeed(2000); // delay before deleting
+          setIsDeleting(true);
+        }
+      } else {
+        // Deleting
+        setDisplayText(currentPhrase.substring(0, displayText.length - 1));
+        setTypingSpeed(80); // faster when deleting
+        
+        // If we've fully deleted the word, move to next word
+        if (displayText === "") {
+          setIsDeleting(false);
+          setCurrentPhraseIndex((currentPhraseIndex + 1) % phrases.length);
+        }
+      }
+    }, typingSpeed);
+    
+    return () => clearTimeout(timer);
+  }, [displayText, currentPhraseIndex, isDeleting, phrases, typingSpeed]);
+  
   return (
     <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
       {/* Background gradient */}
@@ -23,9 +69,9 @@ const Hero = () => {
           
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl animate-slide-up text-balance">
-            Design, build and deploy AI agent workflows with 
+            Design, build and deploy AI agent workflows to Automate your
             <span className="relative ml-2">
-              <span className="text-gradient">40x speed</span>
+              <span className="text-gradient min-h-[1.25em] inline-block">{displayText}</span>
               <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-purple-500/40 to-blue-500/40 rounded-full"></span>
             </span>
           </h1>
