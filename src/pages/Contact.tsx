@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -11,9 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { sendContactForm } from "@/api/contact";
+import { submitContactForm } from "@/api/contact";
 
-// Define the form schema with Zod
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -23,7 +21,6 @@ const formSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
-// Ensure this type matches the ContactFormData interface in the API
 type ContactFormValues = z.infer<typeof formSchema>;
 
 const ContactPage = () => {
@@ -45,11 +42,10 @@ const ContactPage = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      // Pass the data directly - now it will match the ContactFormData interface
-      await sendContactForm(data);
+      const response = await submitContactForm(data);
       toast({
         title: "Message sent!",
-        description: "Thank you for reaching out. We'll get back to you soon.",
+        description: response.message || "Thank you for reaching out. We'll get back to you soon.",
       });
       form.reset();
     } catch (error) {
@@ -74,7 +70,6 @@ const ContactPage = () => {
           />
           
           <div className="max-w-6xl mx-auto mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact information */}
             <div className="lg:col-span-1 space-y-8">
               <div className="bg-background border border-border rounded-xl p-6 shadow-sm">
                 <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
@@ -114,7 +109,6 @@ const ContactPage = () => {
                 </div>
               </div>
               
-              {/* Image placeholder */}
               <div className="rounded-xl overflow-hidden border border-border shadow-sm">
                 <div className="aspect-[4/3] bg-secondary/50 flex items-center justify-center">
                   <p className="text-muted-foreground">Contact Image</p>
@@ -122,7 +116,6 @@ const ContactPage = () => {
               </div>
             </div>
             
-            {/* Contact form */}
             <div className="lg:col-span-2">
               <div className="bg-background border border-border rounded-xl p-6 shadow-sm">
                 <h3 className="text-xl font-semibold mb-6">Send us a message</h3>
