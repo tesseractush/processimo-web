@@ -1,70 +1,25 @@
-
 import { useState } from "react";
 import { Search, Filter, BookOpen, Video, FileText, BookMarked } from "lucide-react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/ui/section-heading";
 import ResourceCard, { ResourceCardProps } from "@/components/resources/ResourceCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
+import { blogPosts } from "@/data/blog-posts";
 
-// Sample resources data
+const blogCards: ResourceCardProps[] = blogPosts.map(post => ({
+  title: post.title,
+  description: post.description,
+  imageUrl: post.imageUrl,
+  date: post.date,
+  readTime: post.readTime,
+  link: `/blog/${post.slug}`,
+  type: 'blog'
+}));
+
 const resources: Record<string, ResourceCardProps[]> = {
-  blog: [
-    {
-      title: "How AI Agents Are Transforming Customer Service",
-      description: "Discover how businesses are using specialized AI agents to provide better customer service with faster response times and higher satisfaction ratings.",
-      imageUrl: "/placeholder.svg",
-      date: "June 15, 2023",
-      readTime: "5 min read",
-      link: "/resources/blog/ai-customer-service",
-      type: "blog"
-    },
-    {
-      title: "The Business Case for Multi-Agent Workflows",
-      description: "Explore how connecting multiple specialized AI agents into workflows can solve complex business problems and deliver exponential productivity gains.",
-      imageUrl: "/placeholder.svg",
-      date: "July 22, 2023",
-      readTime: "8 min read",
-      link: "/resources/blog/multi-agent-workflows",
-      type: "blog"
-    },
-    {
-      title: "Training AI Agents with Domain-Specific Knowledge",
-      description: "Learn effective strategies for training AI agents with your proprietary business data and domain expertise to create truly specialized assistants.",
-      imageUrl: "/placeholder.svg",
-      date: "August 10, 2023",
-      readTime: "6 min read",
-      link: "/resources/blog/training-domain-knowledge",
-      type: "blog"
-    },
-    {
-      title: "AI Agents vs Traditional Automation: What's the Difference?",
-      description: "Understand the key differences between traditional automation tools and modern AI agents, and when to use each for maximum business impact.",
-      imageUrl: "/placeholder.svg",
-      date: "September 5, 2023",
-      readTime: "7 min read",
-      link: "/resources/blog/ai-vs-automation",
-      type: "blog"
-    },
-    {
-      title: "Case Study: How Company X Achieved 35x Productivity with Processimo",
-      description: "An in-depth look at how a mid-sized consulting firm transformed their research and reporting process using Processimo's AI agent workflows.",
-      imageUrl: "/placeholder.svg",
-      date: "October 12, 2023",
-      readTime: "10 min read",
-      link: "/resources/blog/case-study-company-x",
-      type: "blog"
-    },
-    {
-      title: "The Future of Work: AI Agents as Digital Colleagues",
-      description: "Explore how AI agents are evolving from tools to collaborators, and how this shift will redefine workplace dynamics in the coming years.",
-      imageUrl: "/placeholder.svg",
-      date: "November 18, 2023",
-      readTime: "9 min read",
-      link: "/resources/blog/future-of-work",
-      type: "blog"
-    }
-  ],
+  blog: blogCards,
   documentation: [
     {
       title: "Getting Started with Processimo",
